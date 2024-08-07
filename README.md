@@ -1,4 +1,4 @@
-# Procesamientos de archivos
+# Procesamiento de archivos
 
 ## 1. Comando cat
 
