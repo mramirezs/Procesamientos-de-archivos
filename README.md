@@ -17,7 +17,7 @@ $ cat <opciones> <fichero>
 Para crear un archivo, puedes redirigir la salida estándar al archivo deseado. Por ejemplo, para crear un archivo de secuencia:
 
 ```bash
-$ cat > sequence.fasta
+$ cat > seq1.fasta
 ```
 
 Luego puedes escribir la secuencia en formato FASTA y presionar Ctrl+D para guardar el archivo.
@@ -27,12 +27,29 @@ Luego puedes escribir la secuencia en formato FASTA y presionar Ctrl+D para guar
 Para visualizar el contenido de un archivo, como un archivo FASTA que contiene secuencias de ADN:
 
 ```bash
-$ cat sequence.fasta
+$ cat seq1.fasta
 ```
 
 ### 1.3 Rederigir el contenido
 
 Puedes redirigir el contenido de un archivo a otro. Esto es útil cuando deseas crear una copia de un archivo de anotaciones genómicas:
+
+```bash
+$ cat > annotations.gff
+##gff-version 3
+chr1  .  gene          1300  9000  .  +  .  ID=gene00001;Name=GeneA
+chr1  .  mRNA          1300  9000  .  +  .  ID=mRNA00001;Parent=gene00001;Name=GeneA-RA
+chr1  .  exon          1300  1500  .  +  .  ID=exon00001;Parent=mRNA00001
+chr1  .  exon          3000  3902  .  +  .  ID=exon00002;Parent=mRNA00001
+chr1  .  CDS           1300  1500  .  +  0  ID=cds00001;Parent=mRNA00001
+chr1  .  CDS           3000  3902  .  +  0  ID=cds00002;Parent=mRNA00001
+chr1  .  gene          10500 13500 .  -  .  ID=gene00002;Name=GeneB
+chr1  .  mRNA          10500 13500 .  -  .  ID=mRNA00002;Parent=gene00002;Name=GeneB-RA
+chr1  .  exon          10500 10700 .  -  .  ID=exon00003;Parent=mRNA00002
+chr1  .  exon          12000 13500 .  -  .  ID=exon00004;Parent=mRNA00002
+chr1  .  CDS           10500 10700 .  -  0  ID=cds00003;Parent=mRNA00002
+chr1  .  CDS           12000 13500 .  -  0  ID=cds00004;Parent=mRNA00002
+```
 
 ```bash
 $ cat annotations.gff > backup_annotations.gff
