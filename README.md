@@ -174,3 +174,187 @@ $ nano prueba2.txt
 
 $ join -t "," prueba1.txt prueba2.txt
 ```
+
+## 4. Comando diff
+
+Modo de uso: 
+
+```
+$ diff <opciones> <fichero1> <fichero2>
+```
+
+* Compara línea por línea dos archivos
+
+Opciones:
+
+`-q`: Reporta solo si los archivos difieren.
+
+`-s`: Reporta si los archivos son idénticos.
+
+`-y`: Salida en dos columnas.
+
+```bash
+# Creamos nuestroa archivos distribuciones1.txt
+
+$ cat distribuciones1.txt
+CentOS
+Red Hat
+Ubuntu Debian
+Linux Mint
+Fedora
+OpenSUSE
+
+$ cat distribuciones2.txt
+CentOS
+Red Hat
+Ubuntu Debian
+Linux Mint
+OpenSUSE
+Fedora
+
+
+$ diff -q distribuciones1.txt distribuciones2.txt
+
+$ diff -s distribuciones1.txt distribuciones2.txt
+
+$ nano distribuciones1.txt
+CentOS
+Slax
+Red Hat
+Ubuntu Debian
+Linux Mint
+Fedora
+OpenSUSE
+
+$ nano distribuciones2.txt
+
+CentOS
+Red Hat
+Ubuntu Debian
+Linux Mint
+OpenSUSE
+Fedora
+
+$ diff distribuciones1.txt distribuciones2.txt
+2d1
+< Slax
+7c6
+< OpenSUSE
+---
+> Xubuntu
+```
+
+1. Los números de línea correspondientes al primer fichero.
+2. Una letra: `a` (add) para añadir, `c`c (change) para cambiar, y `d` (delete) para borrar.
+3. Los números de línea correspondientes al segundo fichero.
+4. Símbolos especiales en los cambios a realizar:
+   - El símbolo < son líneas del primer fichero
+   - El símbolo > son líneas del segundo fichero
+
+```bash
+$ diff -y distribuciones1.txt distribuciones2.txt 
+CentOS    CentOS
+Slax       <
+Red Hat    Red Hat
+Debian     Debian
+Linux Mint Linux Mint
+Fedora     Fedora
+OpenSUSE   | Xubuntu
+
+$ diff -y distribuciones1.txt distribuciones2.txt --suppress-common-lines
+Slax     <
+OpenSUSE | Xubuntu
+
+$ diff -c distribuciones1.txt distribuciones2.txt 
+*** distribuciones1.txt 2023-05-04 15:03:23.053374252 +0200
+--- distribuciones2.txt 2023-05-04 15:03:41.723395284 +0200
+***************
+*** 1,7 ****
+CentOS
+-Slax
+Red Hat
+Debian
+Linux Mint
+Fedora
+!OpenSUSE
+--- 1,6 ----
+CentOS
+Red Hat
+Debian
+Linux Mint
+Fedora
+!Xubuntu
+```
+
+## 5. Comando cut
+
+Permite seleccionar o cortar secciones de cada línea de un archivo y escribir el resultado en la salida estándar.
+
+Se utiliza para seleccionar partes de una línea por posición de byte, carácter o delimitador.
+
+Se puede usar para extraer datos de archivos:
+
+• csv (comma separated-values)
+• tsv (tab separated-values)
+
+### 5.1 Opciones:
+
+`-b`: Para obtener una sección de una línea especificando una posición de byte se utiliza la opción –b y especificando el rango de bytes que nos interesa.
+
+```bash
+$ echo 'prueba' | cut -b 2
+r
+
+$ $ echo 'prueba' | cut -b 1-2
+pr
+
+$ echo 'prueba' | cut -b 1,3
+pu
+```
+
+`-c`: También podemos seleccionar por carácter con la opción –c Cuando el flujo de entrada de datos se basa en caracteres, -c puede ser una mejor opción que hacer la selección por bytes, ya que a menudo encontramos caracteres que son representados por más de un byte.
+
+```bash
+$ echo '@fastqs' | cut -c 1,6
+@q
+
+$ echo '@fastqs' | cut -c 1-3
+@fa
+```
+
+`-d`: Podemos seleccionar secciones del flujo de datos usando un delimitador con la opción `–d`. Por defecto el delimitador que asume el comando es el TAB. Esta opción se usa normalmente junto con la opción -f para especificar el campo o los campos a seleccionar
+
+```bash
+# Creamos nuestro archivo names.csv
+$ nano names.csv
+John,Smith,34,London
+Arthur,Evans,21,Newport
+George,Jones,32,Truro
+```
+
+El delimitador se puede indicar utilizando la opción -d junto al delimitador de interés entre comillas -d ','. 
+
+```bash
+$ cut -d ',' -f 1 names.csv
+John
+Arthur
+George
+
+$ cut -d ',' -f 1,4 names.csv
+John,London
+Arthur,Newport
+George,Truro
+
+$ cut -d ',' -f 1 names.csv # ¿Qué obtenemos?
+
+$ cut -f 1 names.csv # ¿Qué obtenemos?
+```
+
+## 6. Secuencias de escape
+
+Una secuencia de escape está formado por el carácter \ seguido de una letra o de una combinación de dígitos. Son utilizadas para acciones como nueva líneas, tabulador, comillas, etc
+
+| Secuencia | Significado                                      |
+|-----------|-------------|
+| `\n`      | Nueva línea |
+| `\t`      | Tabulador   |
