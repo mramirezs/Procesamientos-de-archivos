@@ -58,7 +58,7 @@ Opciones:
 
 ### 2.1 Practiquemos:
 
-```
+```bash
 # Crearemos nuestros datos en los archivos samples.txt, genes.txt y expression.txt
 $ cat > samples.txt 
 kid 
@@ -120,7 +120,7 @@ $ join <opciones> <fichero1> <fichero2>
 
 ### 3.1 Practiquemos
 
-```
+```bash
 # Crearemos nuestros datos en los archivos prueba1.txt y prueba2.txt
 
 $ cat > pruea1.txt # La primera columna es el DNI y la segunda columna el nombre.
