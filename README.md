@@ -145,6 +145,8 @@ adult:PAX5,down
 adult:CTCF,up
 ```
 
+Esto es útil cuando se desean separar las columnas fusionadas con diferentes delimitadores para una mejor visualización o procesamiento posterior.
+
 ## 3. Comando join
 
 Modo de uso: 
@@ -210,6 +212,8 @@ $ nano prueba2.txt
 $ join -t "," prueba1.txt prueba2.txt
 ```
 
+La opción -1 especifica el campo del primer archivo que se utilizará para la comparación, mientras que la opción -2 especifica el campo del segundo archivo. Si los archivos no están ordenados por las columnas de comparación, se recomienda usar la opción -t para definir el delimitador y asegurarse de que la salida sea correcta.
+
 ## 4. Comando diff
 
 Modo de uso: 
@@ -246,8 +250,7 @@ Ubuntu Debian
 Linux Mint
 OpenSUSE
 Fedora
-
-
+ 
 $ diff -q distribuciones1.txt distribuciones2.txt
 
 $ diff -s distribuciones1.txt distribuciones2.txt
