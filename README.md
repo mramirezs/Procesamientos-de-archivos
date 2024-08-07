@@ -38,7 +38,7 @@ cat file1.txt file2.txt > destino.txt
 cat -n file.txt
 ```
 
-## 2. Comando cat
+## 2. Comando paste
 
 Modo de uso: 
 
