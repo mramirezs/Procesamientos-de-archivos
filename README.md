@@ -193,11 +193,11 @@ $ cat > prueba2.txt # La primera columna es el DNI y la segunda columna el sueld
 13241351,9000
 
 $ cat > prueba3.txt # La primera columna es el nombre y la segunda columna el DNI.
-11321345,Mario Neta
-20324151,Aquiles Bailo
-12415132,Elsa Blazo
-32412512,Elena Nito
-13241351,César Noso
+Mario Neta,11321345
+Aquiles Bailo,20324151
+Elsa Blazo,12415132
+Elena Nito,32412512
+César Noso,13241351
 
 $ join -t "," prueba1.txt prueba2.txt
 11321345,Mario Neta,10000
