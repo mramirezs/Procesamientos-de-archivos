@@ -192,7 +192,7 @@ $ cat > prueba2.txt # La primera columna es el DNI y la segunda columna el sueld
 32412512,6500
 13241351,9000
 
-$ cat > pruea3.txt # La primera columna es el nombre y la segunda columna el DNI.
+$ cat > prueba3.txt # La primera columna es el nombre y la segunda columna el DNI.
 11321345,Mario Neta
 20324151,Aquiles Bailo
 12415132,Elsa Blazo
@@ -213,6 +213,8 @@ $ join -1 2 -2 1 -t "," prueba3.txt prueba2.txt
 32412512,Elena Nito,6500
 13241351,César Noso,9000
 
+# La opción -1 especifica el campo del primer archivo que se utilizará para la comparación, mientras que la opción -2 especifica el campo del segundo archivo. Si los archivos no están ordenados por las columnas de comparación, se recomienda usar la opción -t para definir el delimitador y asegurarse de que la salida sea correcta.
+
 $ nano pruea1.txt
 11321345,Mario Neta
 20324151,Aquiles Bailo
@@ -229,8 +231,6 @@ $ nano prueba2.txt
 
 $ join -t "," prueba1.txt prueba2.txt
 ```
-
-La opción -1 especifica el campo del primer archivo que se utilizará para la comparación, mientras que la opción -2 especifica el campo del segundo archivo. Si los archivos no están ordenados por las columnas de comparación, se recomienda usar la opción -t para definir el delimitador y asegurarse de que la salida sea correcta.
 
 ## 4. Comando diff
 
