@@ -68,7 +68,25 @@ $ cat seq1.fasta seq2.fasta > combined_sequences.fasta
 En el caso de archivos grandes, como archivos FASTQ que contienen lecturas de secuencias, puede ser útil contar el número de líneas para verificar la integridad del archivo:
 
 ```bash
+$ cat > reads.fastq
+@SEQ_ID_1
+GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTACGCGCG
++
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@SEQ_ID_2
+TTGGCCGATGCCGTAGCAGGTTGCAAAGGTCAGAGTGCGAA
++
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
 $ cat -n reads.fastq
+1	@SEQ_ID_1
+2	GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTACGCGCG
+3	+
+4	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+5	@SEQ_ID_2
+6	TTGGCCGATGCCGTAGCAGGTTGCAAAGGTCAGAGTGCGAA
+7	+
+8	IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 ```
 
 El comando cat es fundamental en bioinformática para la gestión de archivos de datos y secuencias, facilitando la manipulación y revisión de grandes volúmenes de datos.
