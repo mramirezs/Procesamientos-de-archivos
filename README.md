@@ -178,7 +178,7 @@ $ join <opciones> <fichero1> <fichero2>
 ```bash
 # Crearemos nuestros datos en los archivos prueba1.txt y prueba2.txt
 
-$ cat > pruea1.txt # La primera columna es el DNI y la segunda columna el nombre.
+$ cat > prueba1.txt # La primera columna es el DNI y la segunda columna el nombre.
 11321345,Mario Neta
 20324151,Aquiles Bailo
 12415132,Elsa Blazo
