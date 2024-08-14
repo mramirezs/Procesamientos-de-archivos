@@ -414,3 +414,292 @@ Una secuencia de escape está formado por el carácter \ seguido de una letra o 
 |-----------|-------------|
 | `\n`      | Nueva línea |
 | `\t`      | Tabulador   |
+
+## 7. Comando sort
+
+Permite ordenar líneas de archivos de entrada utilizando ciertos criterios de ordenamiento 
+
+1. Verificar si los datos de entrada están ordenados (`-c`)
+2. Ordenar alfabéticamente
+3. Clasificar en orden inverso (`-r`)
+4. Ordenar por número (`-n`)
+5. Ordenar y eliminar duplicados (`-u`)
+6. Ordenar por elementos que no están al principio de la línea (`-k`)
+
+### 7.1 Comando sort -> history
+
+```bash
+$ cat > genes.txt
+pax4
+sox13
+sox13
+baf1
+tcf4
+
+$ sort -c genes.txt 
+sort: genes.txt:4: disorder: baf1
+
+$ sort genes.txt 
+baf1
+pax4
+sox13
+sox13
+tcf4
+
+$ sort -u genes.txt 
+baf1
+pax4
+sox13
+Tcf4
+
+$ sort -u genes.txt -o genes_output.txt
+
+$ cat genes_output.txt 
+baf1
+pax4
+sox13
+tcf4
+
+$ sort -u genes.txt -o genes_output.txt
+
+$ cat genes_output.txt 
+baf1
+pax4
+sox13
+tcf4
+
+$ sort -r genes_output.txt 
+tcf4
+sox13
+pax4
+baf1
+
+$ shuf -i 1-10 -n 10 > numeros.txt
+
+$ sort -n numeros.txt 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+$ ls -lh | head -n5 > ordenar.txt
+
+$ sort -n -k 2 ordenar.txt 
+```
+
+## 8. Comando uniq (unique)
+
+`uniq` se utiliza para informar u omitir cadenas o líneas repetidas.
+
+```
+uniq <opciones> <fichero>
+```
+
+1. Ver la cantidad de veces que se repite una línea (´-c´)
+2. Imprimir en pantalla las líneas repetidas, y obviar las no repetidas (´-d´)
+3. Imprimir en pantalla las líneas no repetidas (´-u´)
+4. Ignorar mayúsculas y minúsculas (´-i´)
+
+```bash
+$ cat uniq.txt 
+prueba1
+prueba1
+prueba1
+Prueba1
+Prueba2
+prueba2
+test1
+test1
+Test1
+
+$ uniq -c uniq.txt 
+3 prueba1
+1 Prueba1
+1 Prueba2
+1 prueba2
+2 test1
+1 Test1
+
+$ uniq -u uniq.txt 
+Prueba1
+Prueba2
+prueba2
+Test1
+
+$ uniq -d uniq.txt 
+prueba1
+test1
+
+$ uniq uniq.txt 
+prueba1
+Prueba1
+Prueba2
+prueba2
+test1
+Test1
+
+$ uniq -i uniq.txt 
+prueba1
+Prueba2
+test1
+```
+
+¿Qué ocurre si `NO` está ordenado?
+
+```bash
+$ cat uniq2.txt
+prueba1
+prueba1
+prueba1
+Prueba1
+Prueba2
+prueba2
+test1
+test1
+Test1
+prueba1
+
+$ uniq uniq2.txt 
+prueba1
+Prueba1
+Prueba2
+prueba2
+test1
+Test1
+prueba1
+```
+
+| No encuentra entradas duplicados que no se encuentren en líneas adyacentes --> _comandos SORT_
+
+## 9. Comando tr (translate)
+
+Se usa para:
+
+1. Cambiar caracteres:
+   
+  • Mayúsculas a minúsculas o viceversa.
+  • Reemplazarlos por otros.
+  
+3. Borrar caracteres.
+
+`NO` transforma palabras completas - Trabaja caracter por caracter.
+
+
+### 9.2 Comando tr (translate) -> history
+
+```bash 
+$ echo "Esto es una ejemplo de tr para la clase de hoy" | tr 'a' 'A'
+Esto es unA ejemplo de tr pArA lA clAse de hoy
+
+$ echo "Esto es una ejemplo de tr para la clase de hoy" | tr 'aeiou' 'AEIOU’
+EstO Es UnA EjEmplO dE tr pArA lA clAsE dE hOy
+
+$ cat /etc/passwd | tr "aeiou" "AEIOU" | head
+
+rOOt:x:0:0:rOOt:/rOOt:/bIn/bAsh
+bIn:x:1:1:bIn:/bIn:/sbIn/nOlOgIn
+dAEmOn:x:2:2:dAEmOn:/sbIn:/sbIn/nOlOgIn
+Adm:x:3:4:Adm:/vAr/Adm:/sbIn/nOlOgIn
+lp:x:4:7:lp:/vAr/spOOl/lpd:/sbIn/nOlOgIn
+sync:x:5:0:sync:/sbIn:/bIn/sync
+shUtdOwn:x:6:0:shUtdOwn:/sbIn:/sbIn/shUtdOwn
+hAlt:x:7:0:hAlt:/sbIn:/sbIn/hAlt
+mAIl:x:8:12:mAIl:/vAr/spOOl/mAIl:/sbIn/nOlOgIn
+OpErAtOr:x:11:0:OpErAtOr:/rOOt:/sbIn/nOlOgIn
+
+$ tr "aeiou" "AEIOU" < /etc/passwd | head
+
+$ echo "Esto es una ejemplo de tr para la clase de hoy" | tr ‘a-z' ‘A-Z’
+ESTO ES UNA EJEMPLO DE TR PARA LA CLASE DE HOY
+
+$ echo "Esto es un ejemplo de tr para la clase de hoy" | tr -d "e"
+Esto s un jmplo d tr para la clas d hoy
+
+$ echo "Esto es un ejemplo de tr para la clase de hoy" | tr -d "Ee"
+sto s un jmplo d tr para la clas d hoy
+
+$ echo "AAA TTTTT GGGG AAA TTTT NNN"
+AAA TTTTT GGGG AAA TTTT NNN
+
+$ echo "AAA TTTTT GGGG AAA TTTT NNN" | tr -s " "
+AAA TTTTT GGGG AAA TTTT NNN
+
+$ echo "AAA TTTTT GGGG AAA TTTT NNN" | tr -c "ATGN" "-"
+AAA-TTTTT-GGGG-AAA-TTTT-NNN-
+```
+
+## 10. Comando wc (word count)
+
+```
+wc <opciones> <fichero(s)>
+```
+
+Sin opciones : cuenta líneas, palabras y caracteres)
+
+Opciones:
+
+`-c`: bytes
+`-m`: caracteres
+`-l`: líneas
+`-w`: palabras
+`-L`: longitud de la línea más larga
+
+```bash
+$ cat sequences.txt 
+1 ACGT
+2 ACGT
+3 TTTGACA
+$ wc sequences.txt 
+```
+
+¿Cuál será el resultado? --> Se cuentan los caracteres que se ven y aquellos que no se ven
+
+## 11. Comand rev
+
+rev se utiliza para invertir las líneas de texto en función de los caracteres
+
+```
+rev <opciones> <fichero>
+```
+
+```bash
+$ echo "ATGC" | rev
+CGTA
+
+$ cat > sequences.txt
+AAATTT
+GGGCC
+CATG
+
+$ rev sequences.txt 
+TTTAAA
+CCGGG
+GTAC
+```
+
+# 12. Comando fold
+
+Permite dividir las líneas en un ancho especificado
+
+```bash
+$ cat fold1.txt 
+Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+$ fold –w 80 fold1.txt 
+Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+Aaaaaaaaaaaaaaaaaa
+
+$ fold –w 30 fold1.txt 
+Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+```
