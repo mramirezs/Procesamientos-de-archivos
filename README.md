@@ -250,6 +250,76 @@ Opciones:
 
 `-y`: Salida en dos columnas.
 
+```
+$ cat archivo1.txt
+línea 1: Hola
+línea 2: Este es un ejemplo
+línea 3: Final del archivo
+
+$ cat archivo2.txt
+línea 1: Hola
+línea 2: Este es un ejemplo modificado
+línea 3: Final del archivo
+
+$ diff archivo1.txt archivo2.txt
+2c2
+< Este es un ejemplo
+---
+> Este es un ejemplo modificado
+```
+
+`2c2` indica que la segunda línea de archivo1.txt es diferente de la segunda línea de archivo2.txt.
+`<` muestra el contenido de archivo1.txt.
+`>` muestra el contenido de archivo2.txt.
+
+```
+$ diff -u archivo1.txt archivo2.txt
+--- archivo1.txt  2024-08-14 10:00:00.000000000
++++ archivo2.txt  2024-08-14 10:00:00.000000000
+@@ -1,3 +1,3 @@
+ Hola
+-Este es un ejemplo
++Este es un ejemplo modificado
+ Final del archivo
+```
+
+Las líneas precedidas por `-` indican que se eliminaron del primer archivo.
+Las líneas precedidas por `+` indican que se agregaron en el segundo archivo.
+
+```
+$ cat archivo1.txt
+línea 1: Hola
+línea 2: Final del archivo
+
+$ cat archivo2.txt
+línea 1: Hola
+línea 2: Este es un ejemplo modificado
+línea 3: Adiós
+
+$ diff archivo1.txt archivo2.txt
+2a3
+> Adiós
+```
+
+`2a3`: Después de la línea 2 en archivo1.txt, la línea 3 ha sido añadida en archivo2.txt.
+
+```bash
+$ cat archivo1.txt
+línea 1: Hola
+línea 2: Este es un ejemplo
+línea 3: Adiós
+
+$ cat archivo2.txt
+línea 1: Hola
+línea 2: Este es un ejemplo 
+
+$ diff archivo1.txt archivo2.txt
+3d2
+< Adiós
+```
+
+`3d2`: La línea 3 en archivo1.txt ha sido eliminada en archivo2.txt.
+
 ```bash
 # Creamos nuestroa archivos distribuciones1.txt
 
