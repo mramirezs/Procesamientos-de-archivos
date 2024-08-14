@@ -501,10 +501,10 @@ $ sort -n -k 2 ordenar.txt
 uniq <opciones> <fichero>
 ```
 
-1. Ver la cantidad de veces que se repite una línea (´-c´)
-2. Imprimir en pantalla las líneas repetidas, y obviar las no repetidas (´-d´)
-3. Imprimir en pantalla las líneas no repetidas (´-u´)
-4. Ignorar mayúsculas y minúsculas (´-i´)
+1. Ver la cantidad de veces que se repite una línea (`-c`)
+2. Imprimir en pantalla las líneas repetidas, y obviar las no repetidas (`-d`)
+3. Imprimir en pantalla las líneas no repetidas (`-u`)
+4. Ignorar mayúsculas y minúsculas (`-i`)
 
 ```bash
 $ cat uniq.txt 
