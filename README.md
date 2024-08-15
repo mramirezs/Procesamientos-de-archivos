@@ -250,7 +250,7 @@ Opciones:
 
 `-y`: Salida en dos columnas.
 
-`u` : Formato unificado, más facil de leer.
+`-u` : Formato unificado, más facil de leer.
 
 ```
 $ cat archivo1.txt
