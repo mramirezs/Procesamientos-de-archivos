@@ -385,6 +385,7 @@ $ diff distribuciones1.txt distribuciones2.txt
 4. Símbolos especiales en los cambios a realizar:
    - El símbolo < son líneas del primer fichero
    - El símbolo > son líneas del segundo fichero
+```
 
 ```bash
 $ diff -y distribuciones1.txt distribuciones2.txt 
