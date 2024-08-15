@@ -250,6 +250,8 @@ Opciones:
 
 `-y`: Salida en dos columnas.
 
+`u` : Formato unificado, más facil de leer.
+
 ```
 $ cat archivo1.txt
 línea 1: Hola
@@ -343,6 +345,8 @@ $ diff -q distribuciones1.txt distribuciones2.txt
 
 $ diff -s distribuciones1.txt distribuciones2.txt
 
+$ diff -u distribuciones1.txt distribuciones2.txt
+
 $ nano distribuciones1.txt
 CentOS
 Slax
@@ -356,22 +360,27 @@ $ nano distribuciones2.txt
 
 CentOS
 Red Hat
-Ubuntu Debian
+Debian
 Linux Mint
-OpenSUSE
 Fedora
+Xubuntu
 
 $ diff distribuciones1.txt distribuciones2.txt
-2d1
+0a1
+> 
+2d2
 < Slax
-7c6
+4c4
+< Ubuntu Debian
+---
+> Debian
+7c7
 < OpenSUSE
 ---
 > Xubuntu
-```
 
 1. Los números de línea correspondientes al primer fichero.
-2. Una letra: `a` (add) para añadir, `c`c (change) para cambiar, y `d` (delete) para borrar.
+2. Una letra: `a` (add) para añadir, `c` (change) para cambiar, y `d` (delete) para borrar.
 3. Los números de línea correspondientes al segundo fichero.
 4. Símbolos especiales en los cambios a realizar:
    - El símbolo < son líneas del primer fichero
@@ -379,37 +388,58 @@ $ diff distribuciones1.txt distribuciones2.txt
 
 ```bash
 $ diff -y distribuciones1.txt distribuciones2.txt 
-CentOS    CentOS
-Slax       <
-Red Hat    Red Hat
-Debian     Debian
-Linux Mint Linux Mint
-Fedora     Fedora
-OpenSUSE   | Xubuntu
+							      >
+CentOS								CentOS
+Slax							  <
+Red Hat								Red Hat
+Ubuntu Debian				|	Debian
+Linux Mint						Linux Mint
+Fedora								Fedora
+OpenSUSE						|	Xubuntu
+
 
 $ diff -y distribuciones1.txt distribuciones2.txt --suppress-common-lines
-Slax     <
-OpenSUSE | Xubuntu
+							      >
+Slax							  <
+Ubuntu Debian				|	Debian
+OpenSUSE						|	Xubuntu
+
 
 $ diff -c distribuciones1.txt distribuciones2.txt 
-*** distribuciones1.txt 2023-05-04 15:03:23.053374252 +0200
---- distribuciones2.txt 2023-05-04 15:03:41.723395284 +0200
+*** distribuciones1.txt	2024-08-14 19:50:34.231249295 -0500
+--- distribuciones2.txt	2024-08-14 19:54:48.828974690 -0500
 ***************
 *** 1,7 ****
-CentOS
+  CentOS
+- Slax
+  Red Hat
+! Ubuntu Debian
+  Linux Mint
+  Fedora
+! OpenSUSE
+--- 1,7 ----
++ 
+  CentOS
+  Red Hat
+! Debian
+  Linux Mint
+  Fedora
+! Xubuntu
+
+$ diff -u distribuciones1.txt distribuciones2.txt 
+--- distribuciones1.txt	2024-08-14 19:50:34.231249295 -0500
++++ distribuciones2.txt	2024-08-14 19:54:48.828974690 -0500
+@@ -1,7 +1,7 @@
++
+ CentOS
 -Slax
-Red Hat
-Debian
-Linux Mint
-Fedora
-!OpenSUSE
---- 1,6 ----
-CentOS
-Red Hat
-Debian
-Linux Mint
-Fedora
-!Xubuntu
+ Red Hat
+-Ubuntu Debian
++Debian
+ Linux Mint
+ Fedora
+-OpenSUSE
++Xubuntu
 ```
 
 ## 5. Comando cut
