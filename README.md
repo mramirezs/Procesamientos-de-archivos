@@ -502,7 +502,7 @@ John,London
 Arthur,Newport
 George,Truro
 
-$ cut -d ',' -f 1 names.csv # ¿Qué obtenemos?
+$ cut -d ',' -f 1-4 names.csv # ¿Qué obtenemos?
 
 $ cut -f 1 names.csv # ¿Qué obtenemos?
 ```
