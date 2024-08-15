@@ -716,7 +716,7 @@ OpErAtOr:x:11:0:OpErAtOr:/rOOt:/sbIn/nOlOgIn
 
 $ tr "aeiou" "AEIOU" < /etc/passwd | head
 
-$ echo "Esto es una ejemplo de tr para la clase de hoy" | tr ‘a-z' ‘A-Z’
+$ echo "Esto es una ejemplo de tr para la clase de hoy" | tr 'a-z' 'A-Z'
 ESTO ES UNA EJEMPLO DE TR PARA LA CLASE DE HOY
 
 $ echo "Esto es un ejemplo de tr para la clase de hoy" | tr -d "e"
